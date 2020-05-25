@@ -1,0 +1,16 @@
+QUESTION 1 :
+
+select team.name, player.role, wizard.lastname, wizard.firstname from player join wizard on player.wizard_id=wizard.id join team on player.team_id=team.id order by team.name asc, player.role asc, wizard.lastname asc, wizard.firstname asc;
+
+
+
+QUESTION 2 :
+
+select wizard.firstname, wizard.lastname from wizard join player on player.wizard_id=wizard.id where player.role='seeker' order by wizard.lastname asc, wizard.firstname asc ;
+
+
+QUESTION 3 :
+
+select wizard.lastname from wizard left join player on wizard.id = player.wizard_id and player.role='quidditch';
+
+
