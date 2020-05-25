@@ -1,0 +1,130 @@
+leodine@leodine-MS-7817:~/BDD/Bases$ mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.20-0ubuntu0.20.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database kaamelott;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use kaamelott;
+Database changed
+mysql> create table 
+    -> (
+    -> id INT PRIMARY KEY AUTO_INCREMENT,
+    -> name VARCHAR(80) NOT NULL,
+    -> age INT NOT NULL
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(
+id INT PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(80) NOT NULL,
+age INT NOT NULL' at line 2
+mysql> create table knight ( id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(80) NOT NULL, age INT NOT NULL );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> INSERT INTO knight (name, age) VALUES (Arthur 40ans
+    -> Perceval 35 ans
+    -> ^C
+mysql> INSERT INTO knight (name, age) VALUES ('Arthur', 40), ('Perceval', 35), ('Lancelot', 38);
+Query OK, 3 rows affected (0.03 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT name FROM knight;
++----------+
+| name     |
++----------+
+| Arthur   |
+| Perceval |
+| Lancelot |
++----------+
+3 rows in set (0.01 sec)
+
+mysql> UPDATE knight SET age=36 WHERE name='Perceval';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT name FROM knight WHERE age>37;
++----------+
+| name     |
++----------+
+| Arthur   |
+| Lancelot |
++----------+
+2 rows in set (0.00 sec)
+
+mysql> ALTER TABLE knight ADD is_dubbed BOOLEAN NULL;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> UPDATE knight SET is_dubbed=TRUE;
+Query OK, 3 rows affected (0.00 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+mysql> UPDATE knight SET is_dubbed=FALSE WHERE name='Perceval';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> DELETE FROM knight WHERE name='Lancelot';
+Query OK, 1 row affected (0.00 sec)
+
+mysql> TRUNCATE knight;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> DROP knight;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'knight' at line 1
+mysql> DROP TABLE knight;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> create table weapon ( id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(50) );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> INSERT INTO weapon (name) VALUES ('Sword', 'Bow', 'Lance', 'Catapult');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> INSERT INTO weapon (name) VALUES ('Sword');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO weapon (name) VALUES ('Bow');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO weapon (name) VALUES ('Lance');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO weapon (name) VALUES ('Catapult');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> UPDATE weapon SET name='whip' WHERE name='Bow';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> DELETE FROM weapon WHERE name='Lance';
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from weapon;
++----+----------+
+| id | name     |
++----+----------+
+|  1 | Sword    |
+|  2 | whip     |
+|  4 | Catapult |
++----+----------+
+3 rows in set (0.00 sec)
+
+mysql> history | tail -15
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'history | tail -15' at line 1
+mysql> gedit
+    -> ^C
+mysql> quit
+Bye
+leodine@leodine-MS-7817:~/BDD/Bases$ gedit
+
+
+
