@@ -1,0 +1,24 @@
+QUESTION 1
+
+select t.name, count(*) as nb_player 
+from player p 
+join team t on t.id=team_id 
+group by t.name 
+order by nb_player desc;
+
+QUESTION 2
+
+select t.name from player p 
+join team t on t.id=team_id 
+group by t.name having count(*)>=14 
+order by t.name asc;
+
+QUESTION 3
+
+select t.name,w.lastname,p.enrollment_date 
+from player p 
+join wizard w on w.id=p.wizard_id 
+join team t on t.id=p.team_id 
+group by t.name,w.lastname,p.enrollment_date 
+having t.name='Gryffindor'
+order by p.enrollment_date asc;
