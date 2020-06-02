@@ -1,0 +1,27 @@
+QUESTION 1 :
+
+SELECT name, role, lastname, firstname 
+FROM player 
+JOIN wizard w ON wizard_id=w.id 
+JOIN team t on team_id=t.id 
+ORDER by name, role, lastname, firstname;
+
+
+
+QUESTION 2 :
+
+SELECT firstname, lastname 
+FROM player 
+JOIN wizard ON player.wizard_id=wizard.id 
+WHERE player.role='seeker'
+ORDER BY lastname, firstname;
+
+
+QUESTION 3 :
+
+SELECT lastname  
+FROM wizard  
+JOIN player ON wizard.id = player.wizard_id 
+WHERE role <> 'quidditch' AND lastname <> '';
+
+
